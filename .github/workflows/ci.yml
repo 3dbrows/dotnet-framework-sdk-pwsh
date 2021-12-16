@@ -1,0 +1,23 @@
+mcr.microsoft.com/dotnet/framework/sdk:4.8 with pwsh installed
+
+name: ci
+
+on:
+  push:
+    branches:
+    - 'main'
+
+jobs:
+  docker:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@master
+    - name: Build and push
+      working-directory: .
+      run: |
+        docker login -u $env:USER -p $env:PASS
+        docker build -t 3dbrows/dotnet-framework-sdk-pwsh:4.8 .
+        docker image push 3dbrows/dotnet-framework-sdk-pwsh:4.8
+      env:
+        USER: ${{ secrets.DOCKER_USER }}
+        PASS: ${{ secrets.DOCKER_PASS }}

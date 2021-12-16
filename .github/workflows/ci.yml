@@ -1,5 +1,3 @@
-mcr.microsoft.com/dotnet/framework/sdk:4.8 with pwsh installed
-
 name: ci
 
 on:

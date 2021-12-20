@@ -1,4 +1,4 @@
-escape=`
+# escape=`
 FROM mcr.microsoft.com/dotnet/framework/sdk:4.8
 RUN dotnet tool install --global PowerShell
 RUN Invoke-WebRequest -OutFile vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe

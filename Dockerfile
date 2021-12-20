@@ -11,5 +11,5 @@ RUN Invoke-WebRequest -OutFile vs_buildtools.exe https://aka.ms/vs/17/release/vs
 
 # Install .NET Core 3.1.301
 RUN Invoke-WebRequest -OutFile 'dotnet-install.ps1' https://dot.net/v1/dotnet-install.ps1 ; `
-    .\dotnet-install.ps1 -Version '3.1.301' -InstallDir 'C:\Program Files\dotnet\sdk\3.1.301' ; `
+    .\dotnet-install.ps1 -Version '3.1.301' -InstallDir 'C:\Program Files\dotnet' -SkipNonVersionedFiles ; `
     Remove-Item dotnet-install.ps1

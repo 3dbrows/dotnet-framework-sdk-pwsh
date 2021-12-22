@@ -4,9 +4,10 @@ FROM mcr.microsoft.com/dotnet/framework/sdk:4.8
 # Install pwsh
 RUN dotnet tool install --global PowerShell
 
-# Install F# compiler and other build tools
-RUN Invoke-WebRequest -OutFile vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe ; `
-    Start-Process -Wait -FilePath vs_buildtools.exe -ArgumentList '--quiet --wait --norestart --nocache modify --installPath "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools" --add Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools --add Microsoft.Net.Component.4.7.2.SDK --add Microsoft.Net.ComponentGroup.TargetingPacks.Common --includeRecommended --includeOptional' ; `
+# Remove VS2022, install 2019 with F#. Laziness: reuse 2022 dir to save editing PATH.
+RUN Start-Process -Wait -FilePath 'C:\Program Files (x86)\Microsoft Visual Studio\installer\setup.exe' -ArgumentList 'uninstall --quiet --installPath "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools"' ; `
+    Invoke-WebRequest -OutFile vs_buildtools.exe https://aka.ms/vs/16/release/vs_buildtools.exe ; `
+    Start-Process -Wait -FilePath vs_buildtools.exe -ArgumentList '--quiet --wait --norestart --nocache --installPath "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools" --add Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools --includeRecommended --includeOptional'; `
     Remove-Item vs_buildtools.exe
 
 # Install .NET Core 3.1.301

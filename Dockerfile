@@ -6,7 +6,7 @@ RUN dotnet tool install --global PowerShell
 
 # Install F# compiler and other build tools
 RUN Invoke-WebRequest -OutFile vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe ; `
-    Start-Process -Wait -FilePath vs_buildtools.exe -ArgumentList '--quiet --wait --norestart --nocache modify --installPath "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools" --add Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools -add Microsoft.Net.Component.4.7.2.SDK --add Microsoft.Net.ComponentGroup.TargetingPacks.Common --includeRecommended --includeOptional' ; `
+    Start-Process -Wait -FilePath vs_buildtools.exe -ArgumentList '--quiet --wait --norestart --nocache modify --installPath "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools" --all' ; `
     Remove-Item vs_buildtools.exe
 
 # Install .NET Core 3.1.301

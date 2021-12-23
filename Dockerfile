@@ -9,7 +9,7 @@ RUN dotnet tool install --global PowerShell ; `
     Invoke-WebRequest -OutFile dotnet-install.ps1 https://dot.net/v1/dotnet-install.ps1 ; `
     $env:args = '--quiet --wait --norestart --nocache --installPath C:\BuildTools2019 --add Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools --includeRecommended --includeOptional' ; `
     echo $env:args ; `
-    echo Start-Process -Wait -FilePath vs_buildtools.exe -ArgumentList \"$env:args\" ; `
+    echo Start-Process -Wait -FilePath vs_buildtools.exe -ArgumentList `"$env:args`" ; `
     Start-Process -Wait -FilePath vs_buildtools.exe -ArgumentList \"$env:args\" ; `
     ls ; `
     .\dotnet-install.ps1 -Version '3.1.301' -InstallDir 'C:\Program Files\dotnet' -SkipNonVersionedFiles ; `

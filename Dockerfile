@@ -10,10 +10,10 @@ ENV InstallArgs="--quiet --wait --norestart --nocache --add Microsoft.VisualStud
 #    Invoke-WebRequest -Outfile AWSCLIV2.msi https://awscli.amazonaws.com/AWSCLIV2.msi ; `
 #    Invoke-WebRequest -OutFile dotnet-install.ps1 https://dot.net/v1/dotnet-install.ps1 ; `
 #RUN echo `"${env:InstallArgs}`"
-RUN echo \"${env:InstallArgs}\"
+#RUN echo \"${env:InstallArgs}\"
 RUN echo `'${env:InstallArgs}`'
-RUN echo \'${env:InstallArgs}\'
-RUN echo Start-Process -Wait -FilePath vs_buildtools.exe -ArgumentList '${env:InstallArgs}'
+#RUN echo \'${env:InstallArgs}\'
+RUN echo Start-Process -Wait -FilePath vs_buildtools.exe -ArgumentList `'${env:InstallArgs}`'
     #; `
     #Start-Process -Wait -FilePath vs_buildtools.exe -ArgumentList `"${env:InstallArgs}`" ; `
     #ls 'C:\Program Files (x86)\Microsoft Visual Studio\' ; `

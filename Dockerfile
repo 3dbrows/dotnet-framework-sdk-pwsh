@@ -9,7 +9,7 @@ RUN dotnet tool install --global PowerShell ; `
     Invoke-WebRequest -OutFile vs_buildtools.exe https://aka.ms/vs/16/release/vs_buildtools.exe ; `
     Invoke-WebRequest -Outfile AWSCLIV2.msi https://awscli.amazonaws.com/AWSCLIV2.msi ; `
     Invoke-WebRequest -OutFile dotnet-install.ps1 https://dot.net/v1/dotnet-install.ps1 ; `
-    Start-Process -Wait -FilePath vs_buildtools.exe -ArgumentList `"${env:InstallArgs}`" ; `
+    Start-Process -Wait -FilePath vs_buildtools.exe -ArgumentList `'${env:InstallArgs}`' ; `
     ls 'C:\Program Files (x86)\Microsoft Visual Studio\' ; `
     .\dotnet-install.ps1 -Version '3.1.301' -InstallDir 'C:\Program Files\dotnet' -SkipNonVersionedFiles ; `
     Start-Process msiexec.exe -Wait -ArgumentList '/i AWSCLIV2.msi /quiet' ; `

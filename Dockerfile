@@ -11,5 +11,7 @@ RUN dotnet tool install --global PowerShell ; `
     Invoke-WebRequest -OutFile wix314.exe https://wixtoolset.org/downloads/v3.14.0.5722/wix314.exe ; `
     Start-Process wix314.exe -Wait -ArgumentList '/install /quiet /norestart' ; `
     Remove-Item wix314.exe ; `
-    $Env:PATH = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') ; `
-    setx /M PATH ($Env:PATH -replace [regex]::Escape('2022'), '2019')
+    $Env:NewPATH=[System.Environment]::GetEnvironmentVariable('Path', 'Machine') ; `
+    $Env:NewPATH=$Env:NewPATH -replace [regex]::Escape('2022'), '2019' ; `
+    $Env:NewPATH=$Env:NewPATH + ';' ; `
+    setx /M PATH $Env:NewPATH

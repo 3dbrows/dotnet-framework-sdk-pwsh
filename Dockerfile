@@ -8,7 +8,7 @@ RUN dotnet tool install --global PowerShell ; `
     choco install visualstudio2019-workload-manageddesktopbuildtools --package-parameters '--add Microsoft.VisualStudio.Component.FSharp.MSBuild' ; `
     choco install dotnetcore-sdk --version=3.1.301 ; `
     choco install awscli ; `
-    setx /M PATH ($Env:PATH -replace [regex]::Escape('2022'), '2019') ; `
+    setx /M PATH ([System.Environment]::GetEnvironmentVariable("Path","Machine") -replace [regex]::Escape('2022'), '2019') ; `
     Invoke-WebRequest -OutFile wix314.exe https://wixtoolset.org/downloads/v3.14.0.5722/wix314.exe ; `
     Start-Process wix314.exe -Wait -ArgumentList '/install /quiet /norestart' ; `
     Remove-Item wix314.exe
